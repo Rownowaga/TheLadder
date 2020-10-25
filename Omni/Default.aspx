@@ -3,4 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <asp:Literal runat="server" ID="litResponse"></asp:Literal>
+    
+    <asp:Button runat="server" Text="Click" OnClick="Unnamed_Click"/>
 </asp:Content>
