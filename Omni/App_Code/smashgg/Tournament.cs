@@ -1,6 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Omni.App_Code.helpers;
 
@@ -13,18 +11,14 @@ namespace Omni.App_Code.smashgg
         public User[] admins { get; set; }
         public string city { get; set; }
         public string countryCode { get; set; }
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime createdAt { get; set; }
         public string currency { get; set; }
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime endDat { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime eventRegistrationClosesAt { get; set; }
         public Event[] events { get; set; }
         public bool hasOnlineEvents { get; set; }
         public string hashtag { get; set; }
-        public string[] images { get; set; }
+        public SmashggImage[] images { get; set; }
         public bool isOnline { get; set; }
         public float lat { get; set; }
         public TournamentLinks links { get; set; }
@@ -38,23 +32,18 @@ namespace Omni.App_Code.smashgg
         public string primaryContact { get; set; }
         public string primaryContactType { get; set; }
         public object publishing { get; set; }
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime registrationClosesAt { get; set; }
         public string rules { get; set; }
         public string shortSlug { get; set; }
         public string slug { get; set; }
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime startAt { get; set; }
         public int state { get; set; }
         public Stations[] stations { get; set; }
         public StreamQueueInfo streamQueue { get; set; }
         public Streams[] streams { get; set; }
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime teamCreationClosesAt { get; set; }
         public string timezone { get; set; }
         public int tournamentType { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime updatedAt { get; set; }
         public string url { get; set; }
         public string venueAddress { get; set; }
@@ -67,10 +56,10 @@ namespace Omni.App_Code.smashgg
             JObject tournament = JObject.Parse(obj["data"]["tournament"].ToString());
 
             //Ints
-            this.id = Conversion.ToInt((string)tournament["id"]);
-            this.numAttendess = Conversion.ToInt((string)tournament["numAttendess"]);
-            this.tournamentType = Conversion.ToInt((string)tournament["tournamentType"]);
-            this.state = Conversion.ToInt((string)tournament["state"]);
+            this.id = SmashggConversion.ToInt((string)tournament["id"]);
+            this.numAttendess = SmashggConversion.ToInt((string)tournament["numAttendess"]);
+            this.tournamentType = SmashggConversion.ToInt((string)tournament["tournamentType"]);
+            this.state = SmashggConversion.ToInt((string)tournament["state"]);
 
             //Strings
             this.name = (string)tournament["name"];
@@ -91,17 +80,17 @@ namespace Omni.App_Code.smashgg
             this.url = (string)tournament["url"];
 
             //DateTime
-            this.createdAt = Conversion.UnixTimeStampToDateTime((string)tournament["createdAt"]);
-            this.eventRegistrationClosesAt = Conversion.UnixTimeStampToDateTime((string)tournament["eventRegistrationClosesAt"]);
-            this.registrationClosesAt = Conversion.UnixTimeStampToDateTime((string)tournament["registrationClosesAt"]);
-            this.startAt = Conversion.UnixTimeStampToDateTime((string)tournament["startAt"]);
-            this.endDat = Conversion.UnixTimeStampToDateTime((string)tournament["endDat"]);
-            this.updatedAt = Conversion.UnixTimeStampToDateTime((string)tournament["updatedAt"]);
-            this.teamCreationClosesAt = Conversion.UnixTimeStampToDateTime((string)tournament["teamCreationClosesAt"]);
+            this.createdAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["createdAt"]);
+            this.eventRegistrationClosesAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["eventRegistrationClosesAt"]);
+            this.registrationClosesAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["registrationClosesAt"]);
+            this.startAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["startAt"]);
+            this.endDat = SmashggConversion.UnixTimeStampToDateTime((string)tournament["endDat"]);
+            this.updatedAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["updatedAt"]);
+            this.teamCreationClosesAt = SmashggConversion.UnixTimeStampToDateTime((string)tournament["teamCreationClosesAt"]);
 
             //Floats
-            this.lat = Conversion.ToFloat((string)tournament["lat"]);
-            this.lng = Conversion.ToFloat((string)tournament["lng"]);
+            this.lat = SmashggConversion.ToFloat((string)tournament["lat"]);
+            this.lng = SmashggConversion.ToFloat((string)tournament["lng"]);
 
             //Bools
             this.hasOnlineEvents = bool.Parse((string)tournament["hasOnlineEvents"]);
@@ -112,10 +101,11 @@ namespace Omni.App_Code.smashgg
 
             //Objects
             this.streams = Streams.ParseStreams(tournament["streams"]);
+            this.events = Event.ParseEvents(tournament["events"]);
+            this.images = SmashggImage.ParseImages(tournament["images"]);
+            this.links = new TournamentLinks(tournament["links"]);
+
             Console.Write("");
-            //this.events = tournament["events"].ToString();
-            //this.images = tournament[""].ToString();
-            //this.links = (string)tournament["links"];
             //this.owner = tournament[""];
             //this.participants = tournament[""].ToString();
             //this.stations = tournament[""].ToString();

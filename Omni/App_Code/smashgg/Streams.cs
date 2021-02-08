@@ -28,12 +28,12 @@ namespace Omni.App_Code.smashgg
         public Streams(JToken v)
         {
             //Ints
-            this.id = Conversion.ToInt((string)v["id"]);
-            this.followerCount = Conversion.ToInt((string)v["followerCount"]);
-            this.numSetups = Conversion.ToInt((string)v["numSetups"]);
-            this.parentStreamId = Conversion.ToInt((string)v["parentStreamId"]);
-            this.streamType = Conversion.ToInt((string)v["streamType"]);
-            this.streamTypeId = Conversion.ToInt((string)v["streamTypeId"]);
+            this.id = SmashggConversion.ToInt((string)v["id"]);
+            this.followerCount = SmashggConversion.ToInt((string)v["followerCount"]);
+            this.numSetups = SmashggConversion.ToInt((string)v["numSetups"]);
+            this.parentStreamId = SmashggConversion.ToInt((string)v["parentStreamId"]);
+            this.streamType = SmashggConversion.ToInt((string)v["streamType"]);
+            this.streamTypeId = SmashggConversion.ToInt((string)v["streamTypeId"]);
 
             //Bools
             this.enabled = bool.Parse((string)v["enabled"]);

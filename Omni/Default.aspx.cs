@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Omni.App_Code;
@@ -24,6 +25,11 @@ namespace Omni
     	admins {
     	  id
     	}
+    links
+    {
+      facebook
+      discord
+    }
     endAt
     eventRegistrationClosesAt
     hasOfflineEvents
@@ -32,7 +38,6 @@ namespace Omni
     isOnline
     isRegistrationOpen
     lat
-    
     lng
     mapsPlaceId
     name
@@ -52,6 +57,15 @@ namespace Omni
     updatedAt
     venueAddress
     venueName
+		images
+    {
+      id
+      height
+      ratio
+      width
+      type
+      url
+    }
     streams
     {
       id
@@ -69,17 +83,90 @@ namespace Omni
       streamType
       streamTypeId
     }
+    events
+    {
+      id
+			checkInBuffer
+      checkInDuration
+      checkInEnabled
+      createdAt
+      deckSubmissionDeadline
+      entrantSizeMax
+      entrantSizeMin
+      entrants
+      {
+        nodes
+        {
+          name
+        }
+      }
+      hasDecks
+      hasTasks
+      images
+      {
+        id
+        height
+        ratio
+        type
+        url
+        width
+      }
+      isOnline
+      matchRulesMarkdown
+      name
+      numEntrants
+      phaseGroups
+      {
+        id
+      }
+      phases
+      {
+        id
+      }
+      prizingInfo
+      publishing
+      rulesMarkdown
+      rulesetId
+      sets
+      {
+        nodes
+        {
+          id
+        }
+      }
+      slug
+      startAt
+      state
+      stations
+      {
+        nodes
+        {
+          id
+        }
+      }
+      teamManagementDeadline
+      teamNameAllowed
+      type
+      updatedAt
+      useEventSeeds
+      videogame
+      {
+        id
+      }
+      waves
+      {
+        id
+      }
+    }
 	}
 	}";
 
 			RequestData request = new RequestData(); //Variable builder
 			request.addKey("slug", "smashlan-d-106"); //My take on weakly typed object building
 			var response = GraphQL.makeRequest(query, request.toJSON());
-            //Tournament tournament = new Tournament(response);
-            JObject x = JObject.Parse(response);
-            JsonSerializerSettings jss = new JsonSerializerSettings();
-            jss.NullValueHandling = NullValueHandling.Ignore;
-            Tournament tournament = JsonConvert.DeserializeObject<Tournament>(x["data"]["tournament"].ToString(), jss);
+            Tournament tournament = new Tournament(response);
+            //JObject x = JObject.Parse(response);
+
             Console.WriteLine(tournament.id);
 		}
     }

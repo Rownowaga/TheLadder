@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Omni.App_Code.helpers
 {
-    public static class Conversion
+    public static class SmashggConversion
+
     {
         public static DateTime UnixTimeStampToDateTime(string unixTimeStamp)
         {

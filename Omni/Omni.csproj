@@ -95,12 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Style\Master.css" />
+    <Content Include="Tournaments.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\GraphQL.cs" />
-    <Compile Include="App_Code\helpers\Conversion.cs" />
+    <Compile Include="App_Code\helpers\SmashggConversion.cs" />
     <Compile Include="App_Code\RequestData.cs" />
+    <Compile Include="App_Code\smashgg\SmashggImage.cs" />
     <Compile Include="App_Code\smashgg\Tournament.cs" />
     <Compile Include="App_Code\smashgg\Event.cs" />
     <Compile Include="App_Code\smashgg\TournamentLinks.cs" />
@@ -152,6 +155,13 @@
       <DependentUpon>Nav.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tournaments.aspx.cs">
+      <DependentUpon>Tournaments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tournaments.aspx.designer.cs">
+      <DependentUpon>Tournaments.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Nav.Master" />
@@ -169,7 +179,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\Icons\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

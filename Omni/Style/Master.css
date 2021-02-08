@@ -1,0 +1,42 @@
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bebas Neue', sans-serif
+}
+
+#masterNav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    top:0;
+    width:100%;
+    font-size:16px;
+}
+
+#masterNav li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+    #masterNav li:last-child {
+        float: left;
+        border-right: none;
+        border-left: 1px solid #bbb;
+    }
+
+#masterNav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    height:24px;
+}
+
+/* Change the link color to #111 (black) on hover */
+#masterNav li a:hover {
+    background-color: #111;
+}

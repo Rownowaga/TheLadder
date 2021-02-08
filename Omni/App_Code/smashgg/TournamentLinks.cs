@@ -12,8 +12,9 @@ namespace Omni.App_Code.smashgg
         string discord { get; set; }
 
         public TournamentLinks(JToken value)
-        { 
-            
+        {
+            this.facebook = (string)value["facebook"];
+            this.discord = (string)value["discord"];
         }
     }
 }

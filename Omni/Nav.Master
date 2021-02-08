@@ -5,10 +5,21 @@
 <html>
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="Style/Master.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <ul id="masterNav">
+        <li><asp:HyperLink runat="server" NavigateUrl="Default.aspx"><i class="material-icons">home</i></asp:HyperLink></li>
+        <li><asp:HyperLink runat="server" NavigateUrl="Tournaments.aspx">Tournaments</asp:HyperLink></li>
+        <li><asp:HyperLink runat="server" >Players</asp:HyperLink></li>
+        <li><asp:HyperLink runat="server" >Streams</asp:HyperLink></li>
+        <li style="float:right;"><asp:HyperLink runat="server" >About</asp:HyperLink></li>
+    </ul>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="Content" runat="server">
